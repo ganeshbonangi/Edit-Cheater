@@ -1,5 +1,11 @@
+body{
+	margin: 20px;
+}
 .ta-editor, .ta-editor > .ta-bind {
-  min-height: 600px;
+  height: 50px;
+}
+.ng-isolate-scope,.ta-scroll-window {
+height: 50px !important;
 }
 .red{
   color: red;
@@ -17,7 +23,7 @@ img[ta-insert-video]{
 #form{
 position: absolute;
 top: 52px;
-right: 0px;
+/*right: 0px;*/
 z-index: 200;
 bottom: 0px;
 width: 100%;
