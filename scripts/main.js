@@ -27,7 +27,7 @@ app.controller("metadatadigester",function($scope,$rootScope,$compile,$timeout){
 			dataObject.options="";
 			var optlen=self.parent().find(".option").length;
 			for(var j=0;j<optlen;j++){
-				dataObject.options+=($(self.parent().find("textarea")[j]).val()+"__"+$(self.parent().find(".option")[j]).prev().prop("checked")+"$$");
+				dataObject.options+=($(self.parent().find(".option")[j]).val()+"__"+$(self.parent().find(".option")[j]).prev().prop("checked")+"$$");
 			}
 			if(self.parent().find(".radioClass:checked").length&&dataObject.question){
 				//dataObjectArr+=(JSON.stringify(dataObject)+"00078");
