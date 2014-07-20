@@ -64,57 +64,17 @@ app.controller("metadatadigester",function($scope,$rootScope,$compile,$timeout){
 		var len=$(".option").length;
 		$($(".question")[index]).parent().find(".addOptions").before($compile('<input type="radio" class="radioClass" ng-model="radio'+len+' " name="'+index+'" \><div text-angular  ta-default-wrap="p" ta-target-toolbars="statictoolbar" class="option" type="text" ng-model="option'+len+'" > </div><br />')($scope));
 	}
-
-	$scope.sendData1 = function(obj)
-	{
-
-		if (window.XMLHttpRequest)
-		  {// code for IE7+, Firefox, Chrome, Opera, Safari
-		  xmlhttp=new XMLHttpRequest();
-		  }
-		else
-		  {// code for IE6, IE5
-		  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-		  }
-		xmlhttp.onreadystatechange=function()
-		  {
-		  if (xmlhttp.readyState==4 && xmlhttp.status==200)
-		    {
-		    	document.getElementById("render").innerHTML="<b style='color:red'>Database Updated</b>";
-				$scope.question="";
-				$("input[type='radio']").prop("checked",false);
-				$("input[type='text']").text("");
-				$timeout(function(){document.getElementById("render").innerHTML="";},2000)
-		    }
-		  }
-		  
-		  obj=obj.replace(/\\n/g, "\\n")
-                                      .replace(/\\'/g, "\\'")
-                                      .replace(/\\"/g, '\\"')
-                                      .replace(/\\&/g, "\\&")
-                                      .replace(/\\r/g, "\\r")
-                                      .replace(/\\t/g, "\\t")
-                                      .replace(/\\b/g, "\\b")
-                                      .replace(/\\f/g, "\\f");
-		xmlhttp.open("GET","updateDB.php?updateDB="+(obj),true);
-		xmlhttp.send();
-
-	}
-
 });
 
 $scope.sendData=function(obj){
-  console.log(JSON.stringify(obj));
-  /*$.post("updateDB.php",
+//  console.log(JSON.stringify(obj));
+  $.post("updateDB.php",
   {"data":obj},
   function(data,status){
   //$("body").append(data);
    // alert("Data: " + data + "\nStatus: " + status);
-  });*/
+  });
 }
-
-
-
 });
 app.run(function($rootScope,$timeout){
 		if (window.XMLHttpRequest)
