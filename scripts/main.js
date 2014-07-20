@@ -14,24 +14,24 @@ app.controller("metadatadigester",function($scope,$rootScope,$compile,$timeout){
 	});
 	$scope.sendDataToServer=function(){
 		var dataObject={},dataObjectArr=[],flag=true;
-		dataObject.section_name=$.trim($scope.currentSection);//$("#section select option:selected").val();
-		dataObject.subsection_name=$.trim($scope.currentSubSection);//$("#subsection select option:selected").val();
-		dataObject.question_level=$.trim($scope.currentQuestionLevel);//$("#questionlevel select option:selected").val();
-		dataObject.question_type=$.trim($scope.currentQuestionType);//$("#questiontype select option:selected").val();
-		dataObject.question_info=$.trim($scope.questionInfo);
-
 		var question_len=$(".question").length;
 		for(var i=0;i<question_len;i++){
+			dataObjectArr[i]={};
+			dataObjectArr[i].section_name=$.trim($scope.currentSection);//$("#section select option:selected").val();
+			dataObjectArr[i].subsection_name=$.trim($scope.currentSubSection);//$("#subsection select option:selected").val();
+			dataObjectArr[i].question_level=$.trim($scope.currentQuestionLevel);//$("#questionlevel select option:selected").val();
+			dataObjectArr[i].question_type=$.trim($scope.currentQuestionType);//$("#questiontype select option:selected").val();
+			dataObjectArr[i].question_info=$.trim($scope.questionInfo);
 			var self=$($(".question")[i]);
-			dataObject.question=self.find("textarea").val();
-			dataObject.options="";
+			dataObjectArr[i].question=self.find("textarea").val();
+			dataObjectArr[i].options="";
 			var optlen=self.parent().find(".option").length;
-			for(var j=0;j<optlen;j++){
-				dataObject.options+=($(self.parent().find(".option")[j]).val()+"__"+$(self.parent().find(".option")[j]).prev().prop("checked")+"$$");
+			for(var j=1;j<=optlen;j++){
+				dataObjectArr[i].options+=($(self.parent().find("textarea")[j]).val()+"__"+$(self.parent().find(".option")[j-1]).prev().prop("checked")+"$$");
 			}
-			if(self.parent().find(".radioClass:checked").length&&dataObject.question){
+			if(self.parent().find(".radioClass:checked").length&&dataObjectArr[i].question){
 				//dataObjectArr+=(JSON.stringify(dataObject)+"00078");
-				dataObjectArr.push(dataObject);
+				//dataObjectArr[i]=dataObject;
 			}else{
 				flag=false;
 			}	
@@ -104,12 +104,13 @@ app.controller("metadatadigester",function($scope,$rootScope,$compile,$timeout){
 });
 
 $scope.sendData=function(obj){
-  $.post("updateDB.php",
+  console.log(JSON.stringify(obj));
+  /*$.post("updateDB.php",
   {"data":obj},
   function(data,status){
   //$("body").append(data);
    // alert("Data: " + data + "\nStatus: " + status);
-  });
+  });*/
 }
 
 
