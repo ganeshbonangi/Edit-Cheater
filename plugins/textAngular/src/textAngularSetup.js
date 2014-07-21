@@ -14,7 +14,8 @@ textAngularSetup.value('taOptions',  {
 		['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'pre', 'quote'],
 		['bold', 'italics', 'underline', 'ul', 'ol', 'redo', 'undo', 'clear'],
 		['justifyLeft','justifyCenter','justifyRight','indent','outdent'],
-		['html', 'insertImage', 'insertLink', 'insertVideo']
+		['html', 'insertImage', 'insertLink', 'insertVideo'],
+		['mathml','drawing']
 	],
 	classes: {
 		focussed: "focussed",
@@ -151,6 +152,12 @@ textAngularSetup.constant('taTranslations', {
 	insertLink: {
 		tooltip: 'Insert / edit link',
 		dialogPrompt: "Please enter a URL to insert"
+	},
+	mathml:{
+		tooltip: 'Inset math equations'
+	},
+	drawing:{
+		tooltip: 'Inset Drawing'
 	}
 
 
@@ -246,6 +253,30 @@ textAngularSetup.run(['taRegisterTool', '$window', 'taTranslations', 'taSelectio
 		},
 		activeState: function(){
 			return document.queryCommandState('bold');
+		},
+		commandKeyCode: 98
+	});
+
+	taRegisterTool('mathml', {
+		iconclass: 'fa fa-superscript',
+		tooltiptext: taTranslations.mathml.tooltip,
+		action: function(){
+			var windowObjectReference = $window.open("mathml.html", "mathWindow", "width=510, height=350");			
+		},
+		activeState: function(){
+		//alert("activeState");
+		},
+		commandKeyCode: 98
+	});
+	
+	taRegisterTool('drawing', {
+		iconclass: 'fa fa-instagram',
+		tooltiptext: taTranslations.drawing.tooltip,
+		action: function(){
+			//alert("activbe");
+		},
+		activeState: function(){
+		//alert("activeState");
 		},
 		commandKeyCode: 98
 	});
