@@ -22,15 +22,24 @@
 		<link rel="stylesheet" href="plugins/bootstrap-3.2.0-dist/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="style/layout.css" />
 		<!--link rel='stylesheet prefetch' href='http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css'-->
-<!--link rel='stylesheet prefetch' href='http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css'-->
-
+		<!--link rel='stylesheet prefetch' href='http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css'-->
 		<!--link rel="stylesheet" href="http://textangular.com/css/style.css" type="text/css" /-->
 		<!--script src="http://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.js" type="text/javascript"></script>
 		<script src="http://resources.infolinks.com/js/infolinks_main.js" type="text/javascript"></script-->		 
-		
+		<style>
+			.bg-danger{
+				color: red;
+			}
+			.bg-success{
+				color: green;
+			}
+			pre{
+
+			}
+		</style>
     
 		<script src="plugins/jquery/jquery-1.10.2.min.js" type="text/javascript"></script>
-		<!--script src="plugins/bootstrap-3.0.3-dist/dist/js/bootstrap.min.js" type="text/javascript"></script-->
+		<script src="plugins/bootstrap-3.0.3-dist/ui-bootstrap-tpls-0.11.0.js" type="text/javascript"></script>
 		<script src="plugins/angular/angular.js" type="text/javascript"></script>
 		<script src="plugins/angular/angular-route.js" type="text/javascript"></script>
 		<script src="plugins/textAngular/src/textAngularSetup.js" type="text/javascript"></script>
@@ -44,38 +53,34 @@
 		<div text-angular-toolbar name="statictoolbar" class="statictoolbar"></div>
 		<!--text-angular ng-model="htmlVariable"></text-angular-->
 		<div id="form">
-		<div id="section">
-			select section--->
-			<select ng-change="sectionChanger()" ng-model="currentSection">
-				<option ng-repeat="sectionname in sections">
-					{{sectionname}}
-				</option>
-			</select>
-		</div>
-		<div id="subsection">
-			select sub-section--->
-			<select ng-model="currentSubSection">
-				<option ng-repeat="subSectionname in subsection">
-					{{subSectionname}}
-				</option>
-			</select>
-		</div>		
-		<div id="questiontype">
-			select question type--->
-			<select ng-model="currentQuestionType">
-				<option ng-repeat="type in questionType">
-					{{type}}
-				</option>
-			</select>
-		</div>		
-		<div id="questionlevel">
-			select question level---->
+		<pre ng-class="currentSection?'bg-success':'bg-danger'">
+	        <b>Select the option</b>
+	        <label ng-repeat="sectionname in sections"><input type="radio" ng-change="sectionChanger()" name="4" ng-value="sectionname" ng-model="$parent.currentSection"/>{{sectionname}} </label>
+	        <span>{{currentSection}}</span>
+        </pre>
+		<pre ng-class="currentSubSection?'bg-success':'bg-danger'">
+	        <b>Select the option</b>
+	        <label ng-repeat="subSectionname in subsection"><input type="radio" name="2" ng-value="subSectionname" ng-model="$parent.currentSubSection" />{{subSectionname}} </label>
+	        <span>{{currentSubSection}}</span>
+        </pre>
+   		<pre ng-class="currentQuestionType?'bg-success':'bg-danger'">
+	        <b>Select the option</b>
+	        <label ng-repeat="type in questionType"><input type="radio" name="3" ng-value="type" ng-model="$parent.currentQuestionType"/>{{type}} </label>
+	        <span>{{currentQuestionType}}</span>
+        </pre>		
+		<pre ng-class="currentQuestionLevel?'bg-success':'bg-danger'">
+	        <b>Select the option</b>
+	        <label ng-repeat="level in questionLevel"><input type="radio" name="1" ng-value="level" ng-model="$parent.currentQuestionLevel"/>{{level}} </label>
+	        <span>{{currentQuestionLevel}}</span>
+        </pre>
+		<!--div id="questionlevel">
+			select question level
 			<select ng-model="currentQuestionLevel">
 				<option ng-repeat="level in questionLevel">
 					{{level}}
 				</option>
 			</select>
-		</div>
+		</div-->
 		<div id="questionContainer">
 			Enter question info--->
 			<!--div text-angular-toolbar name="htmlcontenttools"></div-->
@@ -88,6 +93,7 @@
 			</div>
 
 		</div>
+		
 		<button id="addQuestion" ng-click="addQuestionModel()">AddQuestion</button><br />
 		<button ng-click="sendDataToServer()">submit</button>
 		content should rend here:===<div id="render"></div>

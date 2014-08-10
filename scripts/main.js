@@ -57,6 +57,7 @@ app.controller("metadatadigester",function($scope,$rootScope,$compile,$timeout){
 					/*Enter question ><textarea ng-model="question"> </textarea><br />Add option<button id="addOptions" click="addOptions()">+</button>*/
 	}
 	$scope.sectionChanger=function(){		
+		$scope.currentSubSection=undefined;
 		var str=$.trim($scope.currentSection);
 		$scope.subsection=$rootScope.metadata[str];
 	}

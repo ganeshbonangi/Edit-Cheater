@@ -23,10 +23,12 @@ img[ta-insert-video]{
 #form{
 position: absolute;
 top: 52px;
-/*right: 0px;*/
+left: 10px;
+right: 10px;
+/*right: 0px;width: 100%;*/
 z-index: 200;
 bottom: 0px;
-width: 100%;
+
 overflow: auto;
 }
 body{
