@@ -4,8 +4,11 @@ body{
 .ta-editor, .ta-editor > .ta-bind {
   height: 50px;
 }
-.ng-isolate-scope,.ta-scroll-window {
+.ta-scroll-window {
 height: 50px !important;
+}
+.tab-content {
+margin-top: 20px;
 }
 .red{
   color: red;

@@ -27,6 +27,11 @@
 		<!--script src="http://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.js" type="text/javascript"></script>
 		<script src="http://resources.infolinks.com/js/infolinks_main.js" type="text/javascript"></script-->		 
 		<style>
+			.radiooption{
+				display: inline-block;
+				vertical-align: middle;
+				width: 98%;
+			}
 			.bg-danger{
 				color: red;
 			}
@@ -39,21 +44,23 @@
 		</style>
     
 		<script src="plugins/jquery/jquery-1.10.2.min.js" type="text/javascript"></script>
-		<script src="plugins/bootstrap-3.0.3-dist/ui-bootstrap-tpls-0.11.0.js" type="text/javascript"></script>
 		<script src="plugins/angular/angular.js" type="text/javascript"></script>
+		<script src="plugins/ui-bootstrap-tpls-0.11.0.js" type="text/javascript"></script>		
 		<script src="plugins/angular/angular-route.js" type="text/javascript"></script>
 		<script src="plugins/textAngular/src/textAngularSetup.js" type="text/javascript"></script>
 		<script src="plugins/textAngular/src/textAngular-sanitize.js" type="text/javascript"></script>
 		<script src="plugins/textAngular/src/textAngular.js" type="text/javascript"></script>
-		<!--script type="text/javascript" src="data/content.json"> </script-->
+		<!--script type="text/javascript" src="scripts/controllers/QTabCtrl.js"> </script-->
 		<script type="text/javascript" src="scripts/main.js"> </script>
 	</head>
 
-	<body ng-controller="metadatadigester">
+	<body >
+		<div ng-controller="metadatadigester">
+
 		<div text-angular-toolbar name="statictoolbar" class="statictoolbar"></div>
 		<!--text-angular ng-model="htmlVariable"></text-angular-->
 		<div id="form">
-		<pre ng-class="currentSection?'bg-success':'bg-danger'">
+		<!--pre ng-class="currentSection?'bg-success':'bg-danger'">
 	        <b>Select the option</b>
 	        <label ng-repeat="sectionname in sections"><input type="radio" ng-change="sectionChanger()" name="4" ng-value="sectionname" ng-model="$parent.currentSection"/>{{sectionname}} </label>
 	        <span>{{currentSection}}</span>
@@ -72,7 +79,7 @@
 	        <b>Select the option</b>
 	        <label ng-repeat="level in questionLevel"><input type="radio" name="1" ng-value="level" ng-model="$parent.currentQuestionLevel"/>{{level}} </label>
 	        <span>{{currentQuestionLevel}}</span>
-        </pre>
+        </pre-->
 		<!--div id="questionlevel">
 			select question level
 			<select ng-model="currentQuestionLevel">
@@ -93,10 +100,39 @@
 			</div>
 
 		</div>
+
+<div >
+  <tabset>
+    <!--tab heading="Static title">Static content </tab-->
+    <tab  select="alertMe($index)" ng-repeat="tab in tabs" heading="{{tab.title}} {{$index+1}}" active="tab.active" disabled="tab.disabled">
+    	<div text-angular ng-model="question[$index]" ta-default-wrap="p" ta-target-toolbars='statictoolbar'> </div>
+      Options
+      <!--button ng-click="removeOption($index)" class="btn btn-danger pull-right">delete options</button> 
+      <button ng-click="addOption($index)" class="btn btn-success pull-right">add options</button-->
+      <div ng-repeat="option in tab.options">
+      	<input type='radio' name="{{$parent.$index}}" />
+      	<div  text-angular class="radiooption" ng-model="options[$parent.$index][$index]" ta-default-wrap="p" ta-target-toolbars='statictoolbar'> </div>
+      </div>
+       	
+      	<!--div text-angular ng-model="option2" ta-default-wrap="p" ta-target-toolbars='statictoolbar'> </div-->
+      <!--{{tab.content}}-->
+    </tab>
+    <button class="btn btn-danger pull-right" ng-click="deleteTab()" >delete</button>
+    <button class="btn btn-success pull-right" id="addQuestion" ng-click="addTab()">add</button>
+  </tabset>
+	
+  
+</div>
+<button class="btn btn-success pull-right" ng-click="preview()">Preview</button>
+<button class="btn btn-success pull-right" ng-click="sendDataToServer()">Save</button>
 		
-		<button id="addQuestion" ng-click="addQuestionModel()">AddQuestion</button><br />
-		<button ng-click="sendDataToServer()">submit</button>
-		content should rend here:===<div id="render"></div>
+		<!--button id="addQuestion" ng-click="addQuestionModel()">AddQuestion</button><br /-->
+		
 	</div>
+
+	<!--	content should rend here:===<div id="render"></div-->
+</div>
+
+
 	</body>
 </html>

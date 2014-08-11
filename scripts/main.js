@@ -1,4 +1,4 @@
-var app=angular.module("AuthoringShell",["textAngular"]);
+var app=angular.module("AuthoringShell",["textAngular","ui.bootstrap"]);
 //var service=angular.module("services",[]);
 app.config(function(){
 	
@@ -48,8 +48,6 @@ app.controller("metadatadigester",function($scope,$rootScope,$compile,$timeout){
 		}else{
 			alert("You should provide quesiton and answer");
 		}
-
-
 	}
 	$scope.addQuestionModel=function(){
 		var len=$(".question").length;
@@ -65,6 +63,35 @@ app.controller("metadatadigester",function($scope,$rootScope,$compile,$timeout){
 		var len=$(".option").length;
 		$($(".question")[index]).parent().find(".addOptions").before($compile('<input type="radio" class="radioClass" ng-model="radio'+len+' " name="'+index+'" \><div text-angular  ta-default-wrap="p" ta-target-toolbars="statictoolbar" class="option" type="text" ng-model="option'+len+'" > </div><br />')($scope));
 	}
+
+
+  $scope.tabs = [
+    { title:'Q', content:'this is content of the ',options:[1,2,3,4,5] }/*,
+    { title:'Q2', content:'thsi is th econtento fo the 2', disabled: false },
+    { title:'Q2', content:'thsi is th econtento fo the 3', disabled: false },
+    { title:'Q3', content:'thsi is th econtento fo the 4', disabled: false }*/
+  ];
+$scope.question=[];
+$scope.options=[1,2,3,4,5,6,7,8,9,10];
+//$scope.options[0]=[0];
+$scope.addOption=function(index){
+//  $scope.options[index].push($scope.options[index]+1);
+}
+  $scope.alertMe = function(i) {
+    setTimeout(function() {
+     // alert('You\'ve selected the alert tab!'+i);
+    });
+  };
+  $scope.addTab = function(){
+    $scope.tabs.push({title:'Q', content:'this is content of the  ',options:[1,2,3,4,5], disabled: false });
+  };
+  $scope.deleteTab=function(index){
+    $scope.tabs.splice(index,1);
+  };
+
+
+
+	
 });
 
 $scope.sendData=function(obj){
