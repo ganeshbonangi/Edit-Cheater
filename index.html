@@ -60,12 +60,7 @@
 		<div text-angular-toolbar name="statictoolbar" class="statictoolbar"></div>
 		<!--text-angular ng-model="htmlVariable"></text-angular-->
 		<div id="form">
-		<!--pre ng-class="currentSection?'bg-success':'bg-danger'">
-	        <b>Select the option</b>
-	        <label ng-repeat="sectionname in sections"><input type="radio" ng-change="sectionChanger()" name="4" ng-value="sectionname" ng-model="$parent.currentSection"/>{{sectionname}} </label>
-	        <span>{{currentSection}}</span>
-        </pre>
-		<pre ng-class="currentSubSection?'bg-success':'bg-danger'">
+		<!--pre ng-class="currentSubSection?'bg-success':'bg-danger'">
 	        <b>Select the option</b>
 	        <label ng-repeat="subSectionname in subsection"><input type="radio" name="2" ng-value="subSectionname" ng-model="$parent.currentSubSection" />{{subSectionname}} </label>
 	        <span>{{currentSubSection}}</span>
@@ -109,9 +104,9 @@
       Options
       <!--button ng-click="removeOption($index)" class="btn btn-danger pull-right">delete options</button> 
       <button ng-click="addOption($index)" class="btn btn-success pull-right">add options</button-->
-      <div ng-repeat="option in tab.options">
-      	<input type='radio' name="{{$parent.$index}}" />
-      	<div  text-angular class="radiooption" ng-model="options[$parent.$index][$index]" ta-default-wrap="p" ta-target-toolbars='statictoolbar'> </div>
+      <div ng-repeat="option in tab.opts">
+      	<input type='checkbox' name="{{$parent.$index}}" ng-model="options[$parent.$index][$index].ans" value=true />
+      	<div  text-angular class="radiooption" ng-model="options[$parent.$index][$index].content" ta-default-wrap="p" ta-target-toolbars='statictoolbar'> </div>
       </div>
        	
       	<!--div text-angular ng-model="option2" ta-default-wrap="p" ta-target-toolbars='statictoolbar'> </div-->
@@ -127,7 +122,11 @@
 <button class="btn btn-success pull-right" ng-click="sendDataToServer()">Save</button>
 		
 		<!--button id="addQuestion" ng-click="addQuestionModel()">AddQuestion</button><br /-->
-		
+		<pre ng-class="currentSection?'bg-success':'bg-danger'">
+	        <b>Select the option</b>
+	        <label ng-repeat="sectionname in sections"><input type="radio" ng-change="sectionChanger()" name="4" ng-value="sectionname" ng-model="$parent.currentSection"/>{{sectionname}} </label>
+	        <!--span>{{currentSection}}</span-->
+        </pre>		
 	</div>
 
 	<!--	content should rend here:===<div id="render"></div-->

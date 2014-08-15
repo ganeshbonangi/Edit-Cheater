@@ -22,4 +22,7 @@ $scope.addOption=function(index){
   $scope.deleteTab=function(index){
     $scope.tabs.splice(index,1);
   };
+  $scope.preview = function(){
+    alert("preview");
+  }
 };
