@@ -38,9 +38,6 @@
 			.bg-success{
 				color: green;
 			}
-			pre{
-
-			}
 		</style>
     
 		<script src="plugins/jquery/jquery-1.10.2.min.js" type="text/javascript"></script>
@@ -84,8 +81,7 @@
 			</select>
 		</div-->
 		<div id="questionContainer">
-			Enter question info--->
-			<!--div text-angular-toolbar name="htmlcontenttools"></div-->
+			Enter question information			<!--div text-angular-toolbar name="htmlcontenttools"></div-->
 			<div text-angular ng-model="questionInfo" ta-default-wrap="p" ta-target-toolbars='statictoolbar'> </div><br />
 			<!--text-angular  name="htmlcontent2" ng-model="data.htmlcontent" ta-disabled='disabled' placeholder='Placeholder Text' ta-default-wrap="p" ta-target-toolbars='htmlcontenttools,statictoolbar'></text-angular-->
 			<div>
@@ -118,15 +114,14 @@
 	
   
 </div>
-<button class="btn btn-success pull-right" ng-click="preview()">Preview</button>
-<button class="btn btn-success pull-right" ng-click="sendDataToServer()">Save</button>
-		
+<!--div><button class="btn btn-success pull-right" ng-click="preview()">Preview</button></div--><br />
 		<!--button id="addQuestion" ng-click="addQuestionModel()">AddQuestion</button><br /-->
 		<pre ng-class="currentSection?'bg-success':'bg-danger'">
 	        <b>Select the option</b>
 	        <label ng-repeat="sectionname in sections"><input type="radio" ng-change="sectionChanger()" name="4" ng-value="sectionname" ng-model="$parent.currentSection"/>{{sectionname}} </label>
 	        <!--span>{{currentSection}}</span-->
         </pre>		
+        <button class="btn btn-success pull-right" ng-click="sendData()">Save Question</button>
 	</div>
 
 	<!--	content should rend here:===<div id="render"></div-->

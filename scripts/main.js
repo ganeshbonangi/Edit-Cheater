@@ -78,9 +78,15 @@ $scope.addOption=function(index){
 //  $scope.options[index].push($scope.options[index]+1);
 }
   $scope.preview = function(){
-    console.log($scope.questionInfo);
-    console.log($scope.currentSection);
-    console.log($scope.question);
+  	$rootScope.dataObject={};
+  	$rootScope.dataObject.questionInfo=$scope.questionInfo;
+  	$rootScope.dataObject.currentSection=$scope.currentSection
+  	$rootScope.dataObject.question=$scope.question;
+  	$rootScope.dataObject.options=$scope.options;
+  	//console.log($rootScope.dataObject);
+    //console.log($scope.questionInfo);
+    //console.log($scope.currentSection);
+    //console.log($scope.question);
 
   //  console.log($scope.currentSection);
    // console.log($scope.currentSection);
@@ -104,12 +110,13 @@ $scope.addOption=function(index){
 	
 });
 
-$scope.sendData=function(obj){
-//  console.log(JSON.stringify(obj));
-  $.post("updateDB.php",
-  {"data":obj},
+$scope.sendData=function(){
+  $scope.preview();
+  console.log(JSON.stringify($rootScope.dataObject));
+  $.post("updateClientDb.php",
+  {"data":$rootScope.dataObject},
   function(data,status){
-  //$("body").append(data);
+  $("pre").append(data);
    // alert("Data: " + data + "\nStatus: " + status);
   });
 }
@@ -133,7 +140,7 @@ app.run(function($rootScope,$timeout){
 				$rootScope.$broadcast("gotdata");
 		    }
 		  }
-		xmlhttp.open("GET","getJson.php?requestFor=dataJSON",true);
+		xmlhttp.open("GET","getConfig.php",true);
 		xmlhttp.send();	
 		/*$rootScope.metadata={"question_type":["mutiple choice single select"],"question_level":["easy","medium","hard"],"sections":["General Awareness","English","Reasoning","Quantitative","Compute Knowledge"],"General Awareness":["sports","economics","general knoledge"],"English":[],"Reasoning":[],"Quantitative":["Simplifications","Time and Work"],"Compute Knowledge":[]};
 		$timeout(function() {$rootScope.$broadcast("gotdata");}, 500);*/
