@@ -5,13 +5,15 @@ app.config(function(){
 });
 app.controller("metadatadigester",function($scope,$rootScope,$compile,$timeout){
 	//$scope.sections=$scope.questionType=$scope.questionLevel=$scope.subsection=[];
-	$scope.$on("gotdata",function(){
-	$timeout(function(){$scope.sections=$rootScope.metadata.sections;
+//	$scope.$on("gotdata",function(){
+//	$timeout(function(){
+		$rootScope.metadata = {"sections":["General Awareness","English","Reasoning","Quantitative","Compute Knowledge","marketing","computers and marketing","current affairs"]};
+		$scope.sections=$rootScope.metadata.sections;
 		//console.log($scope.sections);
 		$scope.questionType=$rootScope.metadata.question_type;
 		$scope.questionLevel=$rootScope.metadata.question_level;
 		$scope.subsection=$rootScope.metadata[$rootScope.metadata.sections[0]];
-	});
+//	});
 	$scope.sendDataToServer=function(){
 		var dataObject={},dataObjectArr=[],flag=true;
 		var question_len=$(".question").length;
@@ -108,7 +110,7 @@ $scope.addOption=function(index){
 
 
 	
-});
+//});
 
 $scope.sendData=function(){
   $scope.preview();
@@ -120,9 +122,10 @@ $scope.sendData=function(){
    // alert("Data: " + data + "\nStatus: " + status);
   });
 }
+
 });
 app.run(function($rootScope,$timeout){
-		if (window.XMLHttpRequest)
+		/*if (window.XMLHttpRequest)
 		  {// code for IE7+, Firefox, Chrome, Opera, Safari
 		  xmlhttp=new XMLHttpRequest();
 		  }
@@ -141,7 +144,7 @@ app.run(function($rootScope,$timeout){
 		    }
 		  }
 		xmlhttp.open("GET","getConfig.php",true);
-		xmlhttp.send();	
+		xmlhttp.send();	*/
 		/*$rootScope.metadata={"question_type":["mutiple choice single select"],"question_level":["easy","medium","hard"],"sections":["General Awareness","English","Reasoning","Quantitative","Compute Knowledge"],"General Awareness":["sports","economics","general knoledge"],"English":[],"Reasoning":[],"Quantitative":["Simplifications","Time and Work"],"Compute Knowledge":[]};
 		$timeout(function() {$rootScope.$broadcast("gotdata");}, 500);*/
 });
