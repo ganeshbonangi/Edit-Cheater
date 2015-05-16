@@ -1,0 +1,15 @@
+<div id="form">
+	    <div text-angular ng-model="question[$index]" ta-default-wrap="p" ta-target-toolbars='statictoolbar'> </div>
+	      Options
+	      <!--button ng-click="removeOption($index)" class="btn btn-danger pull-right">delete options</button> 
+	      <button ng-click="addOption($index)" class="btn btn-success pull-right">add options</button-->
+	      <div ng-repeat="option in tab.opts">
+	      	<input type='checkbox' name="{{$parent.$index}}" ng-model="options[$parent.$index][$index].ans" value=true />
+	      	<div  text-angular class="radiooption" ng-model="options[$parent.$index][$index].content" ta-default-wrap="p" ta-target-toolbars='statictoolbar'> </div>
+	      </div>
+	       	
+	      	<!--div text-angular ng-model="option2" ta-default-wrap="p" ta-target-toolbars='statictoolbar'> </div-->
+	      <!--{{tab.content}}-->
+<!--div><button class="btn btn-success pull-right" ng-click="preview()">Preview</button></div--><br />
+		<!--button id="addQuestion" ng-click="addQuestionModel()">AddQuestion</button><br /-->
+</div>

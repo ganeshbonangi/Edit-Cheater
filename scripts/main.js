@@ -14,6 +14,20 @@ app.controller("metadatadigester",function($scope,$rootScope,$compile,$timeout){
 		$scope.questionLevel=$rootScope.metadata.question_level;
 		$scope.subsection=$rootScope.metadata[$rootScope.metadata.sections[0]];
 //	});
+			  $scope.tabs = [
+			    { title:'Q', content:'this is content of the ',opts:[1,2,3,4,5] }/*,
+			    { title:'Q2', content:'thsi is th econtento fo the 2', disabled: false },
+			    { title:'Q2', content:'thsi is th econtento fo the 3', disabled: false },
+			    { title:'Q3', content:'thsi is th econtento fo the 4', disabled: false }*/
+			  ]; 	
+			  $scope.addTab = function(){
+			    $scope.options[$scope.tabs.length]=[{content:'',ans:false},{content:'',ans:false},{content:'',ans:false},{content:'',ans:false},{content:'',ans:false}];
+			    $scope.tabs.push({title:'Q', content:'this is content of the  ',opts:[1,2,3,4,5], disabled: false });
+			  };
+			  $scope.deleteTab=function(index){
+			    $scope.options.pop();
+			    $scope.tabs.splice(index,1);
+			  };
 	$scope.sendDataToServer=function(){
 		var dataObject={},dataObjectArr=[],flag=true;
 		var question_len=$(".question").length;
@@ -67,12 +81,7 @@ app.controller("metadatadigester",function($scope,$rootScope,$compile,$timeout){
 	}
 
 
-  $scope.tabs = [
-    { title:'Q', content:'this is content of the ',opts:[1,2,3,4,5] }/*,
-    { title:'Q2', content:'thsi is th econtento fo the 2', disabled: false },
-    { title:'Q2', content:'thsi is th econtento fo the 3', disabled: false },
-    { title:'Q3', content:'thsi is th econtento fo the 4', disabled: false }*/
-  ];
+
 $scope.question=[];
 $scope.options=[];
 $scope.options[0]=[{content:'',ans:false},{content:'',ans:false},{content:'',ans:false},{content:'',ans:false},{content:'',ans:false}];
@@ -98,14 +107,7 @@ $scope.addOption=function(index){
      // alert('You\'ve selected the alert tab!'+i);
     });
   };
-  $scope.addTab = function(){
-    $scope.options[$scope.tabs.length]=[{content:'',ans:false},{content:'',ans:false},{content:'',ans:false},{content:'',ans:false},{content:'',ans:false}];
-    $scope.tabs.push({title:'Q', content:'this is content of the  ',opts:[1,2,3,4,5], disabled: false });
-  };
-  $scope.deleteTab=function(index){
-    $scope.options.pop();
-    $scope.tabs.splice(index,1);
-  };
+
 
 
 
